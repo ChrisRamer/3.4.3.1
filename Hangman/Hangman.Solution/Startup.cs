@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using XXXXX.Models;
+using Hangman.Models;
 
-namespace XXXXX
+namespace Hangman
 {
 	public class Startup
 	{
@@ -25,7 +25,7 @@ namespace XXXXX
 			services.AddMvc();
 
 			services.AddEntityFrameworkMySql()
-	  			.AddDbContext<XXXXXContext>(options => options
+	  			.AddDbContext<HangmanContext>(options => options
 	 			 .UseMySql(Configuration["ConnectionStrings:DefaultConnection"]));
 		}
 

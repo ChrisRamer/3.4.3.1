@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace XXXXX.Controllers
+namespace Hangman.Controllers
 {
 	public class HomeController : Controller
 	{
