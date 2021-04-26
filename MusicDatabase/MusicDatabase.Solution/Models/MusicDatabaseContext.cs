@@ -4,8 +4,11 @@ namespace MusicDatabase.Models
 {
 	public class MusicDatabaseContext : DbContext
 	{
-		//public virtual DbSet<XXXXX> YYYYY { get; set; }
-		//public virtual DbSet<XXXXX> YYYYY { get; set; }
+		public virtual DbSet<Genre> Genres { get; set; }
+		public virtual DbSet<Song> Songs { get; set; }
+		public virtual DbSet<Artist> Artists { get; set; }
+		public virtual DbSet<GenreSong> GenreSong { get; set; }
+		public virtual DbSet<ArtistSong> ArtistSong { get; set; }
 
 		public MusicDatabaseContext(DbContextOptions options) : base(options) { }
 
