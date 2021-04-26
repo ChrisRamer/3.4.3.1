@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Hangman.Models;
+using MusicDatabase.Models;
 
-namespace Hangman
+namespace MusicDatabase
 {
 	public class Startup
 	{
@@ -25,7 +25,7 @@ namespace Hangman
 			services.AddMvc();
 
 			services.AddEntityFrameworkMySql()
-	  			.AddDbContext<HangmanContext>(options => options
+	  			.AddDbContext<MusicDatabaseContext>(options => options
 	 			 .UseMySql(Configuration["ConnectionStrings:DefaultConnection"]));
 		}
 

@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
 
-namespace Hangman
+namespace MusicDatabase
 {
   public class Program
   {

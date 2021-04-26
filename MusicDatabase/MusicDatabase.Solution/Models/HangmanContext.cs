@@ -1,13 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace Hangman.Models
+namespace MusicDatabase.Models
 {
-	public class HangmanContext : DbContext
+	public class MusicDatabaseContext : DbContext
 	{
 		//public virtual DbSet<XXXXX> YYYYY { get; set; }
 		//public virtual DbSet<XXXXX> YYYYY { get; set; }
 
-		public HangmanContext(DbContextOptions options) : base(options) { }
+		public MusicDatabaseContext(DbContextOptions options) : base(options) { }
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{

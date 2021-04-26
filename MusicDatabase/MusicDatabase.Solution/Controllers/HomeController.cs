@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace Hangman.Controllers
+namespace MusicDatabase.Controllers
 {
 	public class HomeController : Controller
 	{
