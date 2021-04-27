@@ -5,7 +5,7 @@
 @using MusicDatabase.Models
 @model List<MusicDatabase.Models.Genre>
 
-<h1 id="title">Genres</h1>
+<h2 id="title">Genres</h1>
 
 <hr />
 
@@ -22,5 +22,7 @@
 <hr />
 
 <p>
+	@Html.ActionLink("Add a new genre", "Create")
+	|
 	@Html.ActionLink("Go to homepage", "Index", "Home")
 </p>

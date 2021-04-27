@@ -20,5 +20,18 @@ namespace MusicDatabase.Controllers
 			List<Genre> model = _db.Genres.ToList();
 			return View(model);
 		}
+
+		public ActionResult Create()
+		{
+			return View();
+		}
+
+		[HttpPost]
+		public ActionResult Create(Genre genre)
+		{
+			_db.Genres.Add(genre);
+			_db.SaveChanges();
+			return RedirectToAction("Index");
+		}
 	}
 }
