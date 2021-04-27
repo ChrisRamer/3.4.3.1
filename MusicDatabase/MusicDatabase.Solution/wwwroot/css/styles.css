@@ -27,7 +27,7 @@ input {
     padding: 2.5px 10px;
 }
 
-button {
+input[type="submit"] {
 	background-color: rgb(91, 248, 99);
 	color: rgb(36, 36, 36);
 	border: 2px solid rgb(70, 70, 70);
