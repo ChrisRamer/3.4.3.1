@@ -61,5 +61,20 @@ namespace MusicDatabase.Controllers
 			_db.SaveChanges();
 			return RedirectToAction("Details", new { id = genre.GenreId });
 		}
+
+		public ActionResult Delete(int id)
+		{
+			Genre thisGenre = GetGenreFromId(id);
+			return View(thisGenre);
+		}
+
+		[HttpPost, ActionName("Delete")]
+		public ActionResult DeleteConfirmed(int id)
+		{
+			Genre thisGenre =GetGenreFromId(id);
+			_db.Genres.Remove(thisGenre);
+			_db.SaveChanges();
+			return RedirectToAction("Index");
+		}
 	}
 }
