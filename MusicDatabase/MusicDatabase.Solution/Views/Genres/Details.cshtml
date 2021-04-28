@@ -1,0 +1,31 @@
+@{
+	Layout = "_Layout";
+}
+@model MusicDatabase.Models.Genre
+
+<h2 id="title">Genre: <b>@Html.DisplayFor(model => model.Name)</b></h2>
+
+<hr />
+
+@if (Model.Songs.Count == 0)
+{
+	<p>No songs are of this genre yet.</p>
+}
+else
+{
+	<h4><u>Songs</u></h4>
+	<ul>
+		@foreach (var join in Model.Songs)
+		{
+			<li>@join.Song.Name</li>
+		}
+	</ul>
+}
+
+<hr />
+
+<p>
+	@Html.ActionLink("View all genres", "index")
+	|
+	@Html.ActionLink("Go to homepage", "Index", "Home")
+</p>

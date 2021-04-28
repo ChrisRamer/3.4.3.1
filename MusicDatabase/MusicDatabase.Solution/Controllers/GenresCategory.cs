@@ -33,5 +33,14 @@ namespace MusicDatabase.Controllers
 			_db.SaveChanges();
 			return RedirectToAction("Index");
 		}
+
+		public ActionResult Details(int id)
+		{
+			Genre thisGenre = _db.Genres
+				.Include(genre => genre.Songs)
+				.ThenInclude(join => join.Song)
+				.FirstOrDefault(genre => genre.GenreId == id);
+			return View(thisGenre);
+		}
 	}
 }

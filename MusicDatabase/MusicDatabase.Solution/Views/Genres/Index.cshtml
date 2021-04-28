@@ -16,7 +16,7 @@
 
 @foreach (Genre genre in Model)
 {
-	<li>@genre.Name</li>
+	<li>@Html.ActionLink($"{genre.Name}", "Details", new { id = genre.GenreId })</li>
 }
 
 <hr />
