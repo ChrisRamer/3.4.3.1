@@ -15,6 +15,11 @@ namespace MusicDatabase.Controllers
 			_db = db;
 		}
 
+		private Genre GetGenreFromId(int id)
+		{
+			return _db.Genres.FirstOrDefault(genre => genre.GenreId == id);
+		}
+
 		public ActionResult Index()
 		{
 			List<Genre> model = _db.Genres.ToList();
@@ -41,6 +46,20 @@ namespace MusicDatabase.Controllers
 				.ThenInclude(join => join.Song)
 				.FirstOrDefault(genre => genre.GenreId == id);
 			return View(thisGenre);
+		}
+
+		public ActionResult Edit(int id)
+		{
+			Genre thisGenre = GetGenreFromId(id);
+			return View(thisGenre);
+		}
+
+		[HttpPost]
+		public ActionResult Edit(Genre genre)
+		{
+			_db.Entry(genre).State = EntityState.Modified;
+			_db.SaveChanges();
+			return RedirectToAction("Details", new { id = genre.GenreId });
 		}
 	}
 }
