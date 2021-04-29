@@ -107,5 +107,14 @@ namespace MusicDatabase.Controllers
 			_db.SaveChanges();
 			return RedirectToAction("Index");
 		}
+
+		[HttpPost]
+		public ActionResult DeleteSong(int joinId)
+		{
+			GenreSong joinEntry = _db.GenreSong.FirstOrDefault(entry => entry.GenreSongId == joinId);
+			_db.GenreSong.Remove(joinEntry);
+			_db.SaveChanges();
+			return RedirectToAction("Index");
+		}
 	}
 }
