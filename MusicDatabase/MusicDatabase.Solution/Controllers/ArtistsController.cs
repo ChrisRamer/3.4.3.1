@@ -61,5 +61,20 @@ namespace MusicDatabase.Controllers
 			_db.SaveChanges();
 			return RedirectToAction("Details", new { id = artist.ArtistId });
 		}
+
+		public ActionResult Delete(int id)
+		{
+			Artist thisArtist = GetArtistFromId(id);
+			return View(thisArtist);
+		}
+
+		[HttpPost, ActionName("Delete")]
+		public ActionResult DeleteConfirmed(int id)
+		{
+			Artist thisArtist = GetArtistFromId(id);
+			_db.Artists.Remove(thisArtist);
+			_db.SaveChanges();
+			return RedirectToAction("Index");
+		}
 	}
 }
