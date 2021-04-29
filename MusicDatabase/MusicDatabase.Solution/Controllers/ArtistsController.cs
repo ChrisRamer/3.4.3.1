@@ -47,5 +47,19 @@ namespace MusicDatabase.Controllers
 				.FirstOrDefault(artist => artist.ArtistId == id);
 			return View(thisArtist);
 		}
+
+		public ActionResult Edit(int id)
+		{
+			Artist thisArtist = GetArtistFromId(id);
+			return View(thisArtist);
+		}
+
+		[HttpPost]
+		public ActionResult Edit(Artist artist)
+		{
+			_db.Entry(artist).State = EntityState.Modified;
+			_db.SaveChanges();
+			return RedirectToAction("Details", new { id = artist.ArtistId });
+		}
 	}
 }
