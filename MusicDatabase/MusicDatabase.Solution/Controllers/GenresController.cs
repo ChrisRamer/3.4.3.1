@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,13 +29,18 @@ namespace MusicDatabase.Controllers
 
 		public ActionResult Create()
 		{
+			ViewBag.SongId = new SelectList(_db.Songs, "SongId", "Name");
 			return View();
 		}
 
 		[HttpPost]
-		public ActionResult Create(Genre genre)
+		public ActionResult Create(Genre genre, int songId)
 		{
 			_db.Genres.Add(genre);
+			if (songId != 0)
+			{
+				_db.GenreSong.Add(new GenreSong() { SongId = songId, GenreId = genre.GenreId });
+			}
 			_db.SaveChanges();
 			return RedirectToAction("Index");
 		}
@@ -51,12 +57,18 @@ namespace MusicDatabase.Controllers
 		public ActionResult Edit(int id)
 		{
 			Genre thisGenre = GetGenreFromId(id);
+			ViewBag.SongId = new SelectList(_db.Songs, "SongId", "Name");
 			return View(thisGenre);
 		}
 
 		[HttpPost]
-		public ActionResult Edit(Genre genre)
+		public ActionResult Edit(Genre genre, int songId)
 		{
+			bool duplicate = _db.GenreSong.Any(genreSong => genreSong.SongId == songId && genreSong.GenreId == genre.GenreId);
+			if (songId != 0 && !duplicate)
+			{
+				_db.GenreSong.Add(new GenreSong() { SongId = songId, GenreId = genre.GenreId });
+			}
 			_db.Entry(genre).State = EntityState.Modified;
 			_db.SaveChanges();
 			return RedirectToAction("Details", new { id = genre.GenreId });
