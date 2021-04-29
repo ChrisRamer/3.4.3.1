@@ -15,6 +15,11 @@ namespace MusicDatabase.Controllers
 			_db = db;
 		}
 
+		private Artist GetArtistFromId(int id)
+		{
+			return _db.Artists.FirstOrDefault(artist => artist.ArtistId == id);
+		}
+
 		public ActionResult Index()
 		{
 			List<Artist> model = _db.Artists.ToList();
@@ -32,6 +37,15 @@ namespace MusicDatabase.Controllers
 			_db.Artists.Add(artist);
 			_db.SaveChanges();
 			return RedirectToAction("Index");
+		}
+
+		public ActionResult Details(int id)
+		{
+			Artist thisArtist = _db.Artists
+				.Include(artist => artist.Songs)
+				.ThenInclude(join => join.Song)
+				.FirstOrDefault(artist => artist.ArtistId == id);
+			return View(thisArtist);
 		}
 	}
 }

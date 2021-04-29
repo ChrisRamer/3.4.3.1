@@ -7,24 +7,24 @@
 
 <h2 id="title">Artists</h1>
 
-<hr />
+ <hr />
 
-@if (Model.Count == 0)
-{
-	<p>No artists have been added yet.</p>
-}
-else
-{
-	foreach (Artist artist in Model)
+	@if (Model.Count == 0)
 	{
-		<li>@artist.Name</li>
+	 <p>No artists have been added yet.</p>
 	}
-}
+	else
+	{
+		@foreach (Artist artist in Model)
+		{
+		 <li>@Html.ActionLink($"{artist.Name}", "Details", new { id = artist.ArtistId })</li>
+		}
+	}
 
-<hr />
+ <hr />
 
-<p>
-	@Html.ActionLink("Add a new artist", "Create")
-	|
-	@Html.ActionLink("Go to homepage", "Index", "Home")
-</p>
+ <p>
+		@Html.ActionLink("Add a new artist", "Create")
+  |
+		@Html.ActionLink("Go to homepage", "Index", "Home")
+ </p>
