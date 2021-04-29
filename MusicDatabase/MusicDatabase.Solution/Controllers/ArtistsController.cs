@@ -20,5 +20,18 @@ namespace MusicDatabase.Controllers
 			List<Artist> model = _db.Artists.ToList();
 			return View(model);
 		}
+
+		public ActionResult Create()
+		{
+			return View();
+		}
+
+		[HttpPost]
+		public ActionResult Create(Artist artist)
+		{
+			_db.Artists.Add(artist);
+			_db.SaveChanges();
+			return RedirectToAction("Index");
+		}
 	}
 }
