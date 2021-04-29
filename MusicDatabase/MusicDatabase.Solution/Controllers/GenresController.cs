@@ -88,5 +88,24 @@ namespace MusicDatabase.Controllers
 			_db.SaveChanges();
 			return RedirectToAction("Index");
 		}
+
+		public ActionResult AddSong(int id)
+		{
+			Genre thisGenre = GetGenreFromId(id);
+			ViewBag.SongId = new SelectList(_db.Songs, "SongId", "Name");
+			return View(thisGenre);
+		}
+
+		[HttpPost]
+		public ActionResult AddSong(Genre genre, int songId)
+		{
+			bool duplicate = _db.GenreSong.Any(genreSong => genreSong.SongId == songId && genreSong.GenreId == genre.GenreId);
+			if (songId != 0 && !duplicate)
+			{
+				_db.GenreSong.Add(new GenreSong() { SongId = songId, GenreId = genre.GenreId });
+			}
+			_db.SaveChanges();
+			return RedirectToAction("Index");
+		}
 	}
 }

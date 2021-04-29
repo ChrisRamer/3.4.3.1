@@ -1,0 +1,28 @@
+@{
+	Layout = "_Layout";
+}
+
+@model MusicDatabase.Models.Genre
+
+<h2 id="title">Add a song to <b>@Html.DisplayFor(model => model.Name)</b></h2>
+
+<hr />
+
+@using (Html.BeginForm())
+{
+	@Html.HiddenFor(model => model.GenreId)
+
+	@Html.Label("Song")
+	<br>
+	@Html.DropDownList("SongId")
+	<br><br>
+	<input type="submit" value="Save" />
+}
+
+<hr />
+
+<p>
+	@Html.ActionLink("View all genres", "Index")
+	|
+	@Html.ActionLink("Go to homepage", "Index", "Home")
+</p>
