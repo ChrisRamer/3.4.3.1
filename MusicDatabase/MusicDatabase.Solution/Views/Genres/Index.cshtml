@@ -13,10 +13,12 @@
 {
 	<p>No genres have been added yet.</p>
 }
-
-@foreach (Genre genre in Model)
+else
 {
-	<li>@Html.ActionLink($"{genre.Name}", "Details", new { id = genre.GenreId })</li>
+	@foreach (Genre genre in Model)
+	{
+		<li>@Html.ActionLink($"{genre.Name}", "Details", new { id = genre.GenreId })</li>
+	}
 }
 
 <hr />
