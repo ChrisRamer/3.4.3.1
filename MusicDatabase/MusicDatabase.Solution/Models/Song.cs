@@ -7,7 +7,7 @@ namespace MusicDatabase.Models
 		public int SongId { get; set; }
 		public string Name { get; set; }
 		public int ArtistId { get; set; }
-		public int GenretId { get; set; }
+		public int GenreId { get; set; }
 		public virtual ICollection<GenreSong> Genres { get; }
 
 		public Song()
