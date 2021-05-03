@@ -51,5 +51,13 @@ namespace MusicDatabase.Controllers
 			_db.SaveChanges();
 			return RedirectToAction("Index");
 		}
+
+		public ActionResult Details(int id)
+		{
+			Song thisSong = GetSongFromId(id);
+			ViewBag.Artist = _db.Artists.FirstOrDefault(artist => artist.ArtistId == thisSong.ArtistId);
+			ViewBag.Genre = _db.Genres.FirstOrDefault(genre => genre.GenreId == thisSong.GenreId);
+			return View(thisSong);
+		}
 	}
 }

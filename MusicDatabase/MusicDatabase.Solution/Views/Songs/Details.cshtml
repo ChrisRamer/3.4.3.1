@@ -1,0 +1,25 @@
+@{
+	Layout = "_Layout";
+}
+@model MusicDatabase.Models.Song
+
+<h2 id="title">Song: <b>@Html.DisplayFor(model => model.Name)</b></h2>
+
+<hr />
+
+<h4>
+	<p><b>Artist:</b> @ViewBag.Artist.Name</p>
+	<p><b>Genre:</b> @ViewBag.Genre.Name</p>
+</h4>
+
+<hr />
+
+<p>
+	@Html.ActionLink("Edit", "Edit", new { id = Model.SongId })
+ |
+	@Html.ActionLink("Delete", "Delete", new { id = Model.SongId })
+ |
+	@Html.ActionLink("View all songs", "index")
+ |
+	@Html.ActionLink("Go to homepage", "Index", "Home")
+</p>
