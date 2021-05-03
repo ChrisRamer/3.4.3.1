@@ -18,11 +18,6 @@ else
 		@foreach (var join in Model.Songs)
 		{
 			<li>@Html.ActionLink($"{join.Song.Name}", "Details", "Songs", new { id = join.Song.SongId })</li>
-			@using (Html.BeginForm("DeleteSong", "Songs"))
-			{
-				@Html.Hidden("joinId", @join.GenreSongId)
-				<input id="delete" type="submit" value="Delete" />
-			}
 		}
 	</ul>
 }

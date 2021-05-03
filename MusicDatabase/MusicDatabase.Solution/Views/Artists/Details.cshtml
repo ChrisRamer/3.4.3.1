@@ -17,7 +17,7 @@ else
 	<ul>
 		@foreach (var join in Model.Songs)
 		{
-		 <li>@join.Song.Name</li>
+			<li>@Html.ActionLink($"{join.Song.Name}", "Details", "Songs", new { id = join.Song.SongId })</li>
 		}
 	</ul>
 }
