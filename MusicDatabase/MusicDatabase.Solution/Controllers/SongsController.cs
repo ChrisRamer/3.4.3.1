@@ -59,5 +59,28 @@ namespace MusicDatabase.Controllers
 			ViewBag.Genre = _db.Genres.FirstOrDefault(genre => genre.GenreId == thisSong.GenreId);
 			return View(thisSong);
 		}
+
+		public ActionResult Edit(int id)
+		{
+			Song thisSong = GetSongFromId(id);
+			ViewBag.ArtistId = new SelectList(_db.Artists, "ArtistId", "Name");
+			ViewBag.GenreId = new SelectList(_db.Genres, "GenreId", "Name");
+			return View(thisSong);
+		}
+
+		[HttpPost]
+		public ActionResult Edit(Song song, int artistId, int genreId)
+		{
+			bool artistDuplicate = _db.ArtistSong.Any(artistSong => artistSong.ArtistId == artistId && artistSong.SongId == song.SongId);
+			bool genreDuplicate = _db.GenreSong.Any(genreSong => genreSong.GenreId == genreId && genreSong.SongId == song.SongId);
+			if (artistId != 0 && genreId != 0 && !artistDuplicate && !genreDuplicate)
+			{
+				_db.ArtistSong.Add(new ArtistSong() { ArtistId = artistId, SongId = song.SongId });
+				_db.GenreSong.Add(new GenreSong() { GenreId = genreId, SongId = song.SongId });
+			}
+			_db.Entry(song).State = EntityState.Modified;
+			_db.SaveChanges();
+			return RedirectToAction("Details", new { id = song.SongId });
+		}
 	}
 }
