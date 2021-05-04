@@ -1,0 +1,25 @@
+@{
+	Layout = "_Layout";
+}
+
+@model MusicDatabase.Models.Song
+
+<h2 id="title">Delete <b>@Html.DisplayFor(model => model.Name)</b></h2>
+<h4 id="subtitle"><b>This cannot be undone!</b></h4>
+
+<hr />
+
+@using (Html.BeginForm())
+{
+	<input id="delete" type="submit" value="Delete" />
+}
+
+<hr />
+
+<p>
+	@Html.ActionLink("View all songs", "Index")
+	|
+	@Html.ActionLink("View song", "Details", new { id = Model.SongId })
+	|
+	@Html.ActionLink("Go to homepage", "Index", "Home")
+</p>
